@@ -16,9 +16,9 @@ end
 
 def caesar_cipher(string_to_encrypt, shift)
   encrypted_array = string_to_encrypt.bytes.map do |character|
-    if character.between?(65, 91)
+    if character.between?(65, 90)
       caesar_calculator(65, 90, character, shift).chr
-    elsif character.between?(97, 123)
+    elsif character.between?(97, 122)
       caesar_calculator(97, 122, character, shift).chr
       # each character get turned into numbers and shift is added to it but within limits and having it round of
     else
@@ -30,7 +30,7 @@ end
 
 def caesar_calculator(lower_limit, upper_limit, number_to_check, shift)
   if number_to_check + shift > upper_limit
-    return lower_limit + ((number_to_check + shift) - upper_limit)
+    return lower_limit + ((number_to_check + shift) - upper_limit - 1)
   elsif number_to_check + shift < lower_limit
     return upper_limit - (lower_limit - (number_to_check + shift))
   else
