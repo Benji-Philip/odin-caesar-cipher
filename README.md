@@ -1,1 +1,1 @@
-# odin-caesar-cipher
+# odin-ruby-basic-exercises
