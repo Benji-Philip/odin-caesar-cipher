@@ -15,27 +15,22 @@ until number_is_valid
 end
 
 def caesar_cipher(string_to_encrypt, shift)
-  encrypted_array = string_to_encrypt.bytes.map do |character|
-    if character.between?(65, 90)
-      caesar_calculator(65, 90, character, shift).chr
-    elsif character.between?(97, 122)
-      caesar_calculator(97, 122, character, shift).chr
-      # each character get turned into numbers and shift is added to it but within limits and having it round of
+  result = ""
+  string_to_encrypt.each_byte do |character|
+    # check if character is between A and Z or a and z=
+    if character.between?(65, 90) || character.between?(97, 122)
+      # character has an offset from a base value (65 for "A" or 97 for "a") to which we add the shift and add back to the base value to get shifted value
+      # modulo is used to not cross limit of 25 characters before adding the new offset
+      base = character < 91 ? 65 : 97
+      new_offset = character - base + shift # normal offset = character - base
+      corrected_offset = new_offset % 26 # if offset hits 26 it reverts the offset to 0 and so on
+      new_character = base + corrected_offset
+      result += new_character.chr
     else
-      character.chr
+      result += character.chr # adds remaining as is
     end
   end
-  encrypted_array.join
-end
-
-def caesar_calculator(lower_limit, upper_limit, number_to_check, shift)
-  if number_to_check + shift > upper_limit
-    return lower_limit + ((number_to_check + shift) - upper_limit - 1)
-  elsif number_to_check + shift < lower_limit
-    return upper_limit - (lower_limit - (number_to_check + shift))
-  else
-    return number_to_check + shift
-  end
+  result
 end
 
 p caesar_cipher(string, shift_number)
