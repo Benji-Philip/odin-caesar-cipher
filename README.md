@@ -1,1 +1,1 @@
-# odin-ruby-basic-exercises
+# odin-ruby-projects
