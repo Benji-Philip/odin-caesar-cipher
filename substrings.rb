@@ -10,7 +10,7 @@ def substrings(words, dictionary)
       hash_of_results[word] += 1
     end
   end
-  hash_of_results.reject { |key, value| value == 0 }
+  hash_of_results
 end
 
 puts substrings(words, dictionary)
