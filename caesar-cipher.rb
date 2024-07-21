@@ -1,16 +1,16 @@
-puts "Enter String :"
+puts 'Enter String :'
 string = gets.chomp
 
 number_is_valid = false
 
 until number_is_valid
-  puts "Shift by :"
+  puts 'Shift by :'
   shift_number = gets.chomp.to_i
   number_is_valid = shift_number != 0 # what if the number is too big
   if number_is_valid
     puts "Shifting by #{shift_number}"
   else
-    puts "Invalid input"
+    puts 'Invalid input'
   end
 end
 
@@ -30,11 +30,11 @@ end
 
 def caesar_calculator(lower_limit, upper_limit, number_to_check, shift)
   if number_to_check + shift > upper_limit
-    return lower_limit + ((number_to_check + shift) - upper_limit - 1)
+    lower_limit + ((number_to_check + shift) - upper_limit - 1)
   elsif number_to_check + shift < lower_limit
-    return upper_limit - (lower_limit - (number_to_check + shift))
+    upper_limit - (lower_limit - (number_to_check + shift))
   else
-    return number_to_check + shift
+    number_to_check + shift
   end
 end
 
